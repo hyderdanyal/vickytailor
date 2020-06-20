@@ -1,0 +1,95 @@
+
+.login-btn {
+    font-family: Hack, monospace;
+    background: #bbff00;
+    color: #1d1d1d;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 1.5rem;
+    border: 0;
+    transition: all 0.5s;
+    border-radius: 10px;
+    width: auto;
+    position: relative;
+    min-width: 250px;
+}
+
+.login-btn:after {
+        content: "\00bb";
+        font-family: "Font Awesome 5 Pro";
+        font-weight: 400;
+        position: absolute;
+        left: 95%;
+        top: 54%;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+
+    }
+
+.login-btn:hover {  
+        background: #2b2bff;
+        transition: all 0.5s;
+        border-radius: 10px;
+        box-shadow: 0px 6px 15px #0000ff61;
+        padding: 1.5rem 3rem 1.5rem 1.5rem;
+        color: #ffffff;
+}
+
+.login-btn:hover:after {
+            opacity: 1;
+            transition: all 0.5s;
+            color: #ffffff;
+
+        }
+    
+.ok{
+    color: snow;
+    text-align: center;
+    font-size: 1.7vw;
+    padding: 30px;
+    background: rgba(0, 120, 0, 0.2);
+    border-radius: 15px;
+
+}
+
+.heading{
+    color: #fead03;
+    font-weight: 900;
+    font-size: 3.3vw;
+    margin-top: auto;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.heading1{
+    font-weight: 900;
+    font-size: 3vw;
+    transform: translateY(100%);
+}
+
+.txt{
+    margin-top: 0;
+}
+
+.txt1{
+    margin-bottom: 0;
+}
+.content{
+    font-size: 25px;
+    color: yellow;
+}
+.heading2{
+    color: rgb(255, 38, 0);
+    font-weight: 900;
+    font-size: 3.3vw;
+    margin-top: auto;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.content2{
+    font-size: 25px;
+    color: rgb(255, 38, 0);
+}
