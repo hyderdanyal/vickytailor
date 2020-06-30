@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeItem, addQuantity, subtractQuantity } from '../../components/actions/cartActions'
 import Recipe from './Recipe'
+import Counter from '../../components/counter'
+import Table from "react-bootstrap/Table"
 
 class Cart extends Component {
 
@@ -29,7 +31,22 @@ class Cart extends Component {
                             <div className="item-img">
                                 <img src={item.img} alt={item.img} className="" />
                             </div>
+                            <div>
+                                <Table>
+                                    <tbody>
+                                        <tr>
+                                            <td>{item.title}</td>
+                                            <td> Rs. {item.price}</td>
 
+                                            <Counter id={item.id}
+                                            // value={lsitemcount}
+                                            // value={item.id} 
+                                            // counter={counter}
+                                            ></Counter>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </div>
                             <div className="item-desc">
                                 <span className="title">{item.title}</span>
                                 {/* <p>{item.desc}</p> */}

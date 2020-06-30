@@ -36,20 +36,20 @@ const Counter = (props) => {
             let a = count - 1
             console.log(props.value, ' quantity in cart ', a)
             let cart = {
-                id: props.value,
+                id: props.id,
                 value: a
             }
             console.log("cart decrease", cart)
-            let b = data.filter(data1 => data1.id === props.value)
+            let b = data.filter(data1 => data1.id === props.id)
 
             if (b.length > 0) {
                 cart.value = a
                 // console.log("value", cart.value)
                 // localStorage.setItem(props.value, cart.value)
                 // let index = data.findIndex(element => element.id === props.value)
-                let index = props.value
+                let index = props.id
                 // console.log("id", index)
-                const valueatindex = data.findIndex(element => element.id === props.value)
+                const valueatindex = data.findIndex(element => element.id === props.id)
                 // console.log("indexx", valueatindex)
                 // let indexval = data[valueatindex]
                 // console.log("indexvalue", indexval)
@@ -74,21 +74,21 @@ const Counter = (props) => {
         setCount(count + 1)
         let a = count + 1
 
-        console.log(props.value, ' quantity in cart ', a)
+        console.log(props.id, ' quantity in cart ', a)
         let cart = {
-            id: props.value,
+            id: props.id,
             value: a
         }
-        let b = data.filter(data1 => data1.id === props.value)
+        let b = data.filter(data1 => data1.id === props.id)
 
         if (b.length > 0) {
             cart.value = a
             // console.log("value", cart.value)
             // localStorage.setItem(props.value, cart.value)
             // let index = data.findIndex(element => element.id === props.value)
-            let index = props.value
+            let index = props.id
             // console.log("id", index)
-            const valueatindex = data.findIndex(element => element.id === props.value)
+            const valueatindex = data.findIndex(element => element.id === props.id)
             // console.log("indexx", valueatindex)
             // let indexval = data[valueatindex]
             // console.log("indexvalue", indexval)
@@ -112,6 +112,7 @@ const Counter = (props) => {
     return (
         <div>
             <button onClick={decrease}>-</button>
+            {/* <input value={count}></input> */}
             <text>{count}</text>
             <button onClick={increase}>+</button>
         </div>

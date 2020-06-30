@@ -51,7 +51,7 @@ function men(props) {
         console.log("item id", item.id)
         console.log("getdata", getitem)
         if (getitem !== null) {
-            let localStorageItem = getitem.find(lsitem => lsitem.id === item.id - 1)
+            let localStorageItem = getitem.find(lsitem => lsitem.id === item.id)
 
             console.log("Item present in LS", localStorageItem, "This is Mr. ID", item.id)
             if (localStorageItem) {
