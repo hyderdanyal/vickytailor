@@ -58,7 +58,7 @@ export default function aboutus() {
                     <img src="http://tailorjunction.com/wp-content/uploads/2018/03/formal-wear.jpg" height="500px" width="400px"></img>
                 </div>
             </div>
-
+            {/* dan */}
             <Footer></Footer>
         </>
     )
