@@ -11,6 +11,7 @@ import styles from "../../Styles/headerLinksStyle";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import "../../Styles/dropdownStyle.css"
+import {Session} from "bc-react-session"
 import { Link } from 'react-router-dom'
 // import Search from "../search"
 
@@ -70,20 +71,35 @@ export default function HeaderLinks(props) {
     setAnchorEl(null);
   };
 
+  const session = Session.get();
+  let sess=session.isValid
+  // console.log("ssss",sess)
+  
+  function loggedin(){
+    if(sess === true){
+    return(<button 
+      onClick={destroy}
+      >Logout</button>)
+        }
+    else{
+    return(<Button href="/login">Login</Button>)}
+  }
+  
   // const selectedGenre = (e) => {
 
   //   window.location.href = `/${e}`
 
   // }
   return (
+    
     <List className={classes.list}>
-      <ListItem className={classes.listItem}>
+      {/* <ListItem className={classes.listItem}>
 
         <Link to='/'> <Button color="transparent" >
           Home
                 </Button>
         </Link>
-      </ListItem>
+      </ListItem> */}
 
       <ListItem className={classes.listItem}>
 
@@ -175,11 +191,14 @@ export default function HeaderLinks(props) {
                 </StyledMenuItem>
                 <StyledMenuItem value='Young-Adult' >
 
-                  <Link to='/Login'><Button color="transparent" value='Login' >Login</Button>
-                  </Link>
+                  
+                  {loggedin()}
+                  {/* <Link to='/Login'><Button color="transparent" value='Login' >Login</Button>
+                  </Link> */}
                 </StyledMenuItem>
 
               </div>
+              
 
 
 
@@ -196,5 +215,10 @@ export default function HeaderLinks(props) {
 
 
   );
+  
 
 }
+function destroy(){
+    Session.destroy()
+    window.location.href="/"
+  }

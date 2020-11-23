@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import Header from "../components/Header/Header";
 import LeftHeader from "../components/Header/leftheader";
 // import HeaderLinks from "../components/Header/HeaderLinks";
+import {Session} from 'bc-react-session';
 import "../Styles/homeStyle.css";
 import SpinnerButton from "../components/CustomButtons/ButtonCounter"
 
@@ -41,6 +42,7 @@ export default function Home() {
         justifyContent: "center",
         backgroundRepeat: 'no-repeat'
       }}>
+        {/* <button onClick={destroy}></button> */}
         <p class="ok">
           <h2 class="heading">Custom Tailoring At Your Doorstep</h2>{"\n"}
             -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -151,3 +153,7 @@ export default function Home() {
     </>
   );
 }
+// function destroy(){
+//   Session.destroy()
+//   window.location.href="/login"
+// }

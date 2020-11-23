@@ -3,6 +3,8 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/footer";
 // import image from "../../img/login.jpg";
 import { Redirect } from "react-router-dom";
+import { uuid } from 'uuidv4';
+import RegisterPage from "./login"
 // import Firebase from "../../firebase";
 // import { Session } from "bc-react-session";
 // import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
@@ -11,8 +13,12 @@ import { Redirect } from "react-router-dom";
 
 // const session = Session.get();
 
-const LoginPage = (props) => {
 
+const LoginPage = (props) => {
+  
+  
+  let userid= uuid()
+  // const [userid,setUserId] = useState('')
   const [fname, setFName] = useState('')
   const [lname, setLName] = useState('')
   const [email, setEmail] = useState('')
@@ -158,12 +164,16 @@ const LoginPage = (props) => {
     else {
       try {
 
-        await fetch(`http://127.0.0.1:5000/register?fname=${fname}&lname=${lname}&email=${email}&password=${password}`)
+        await fetch(`http://127.0.0.1:5000/register?fname=${fname}&lname=${lname}&email=${email}&password=${password}&userid=${userid}`)
           .then(res => res.json())
           .then(data => alert(data))
+          // await fetch(`http://127.0.0.1:5000/createcart?&userid=${userid}`)
+          // .then(res => res.json())
+          // .then(data => alert(data))
 
-        // alert("Register Successful")
-        window.location.href = "/login"
+          // alert("Register Successful")
+          window.location.href = {RegisterPage}
+        
       } catch (err) {
         console.log(err)
       }

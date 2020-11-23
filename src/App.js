@@ -23,7 +23,7 @@ function App() {
           leftLinks={<LeftHeader />}
           // rightLinks={<HeaderLinks />}
           fixed
-          color="black"
+          // color="black"
           changeColorOnScroll={{
             height: 400,
             color: "white"

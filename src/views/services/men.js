@@ -17,6 +17,8 @@ import { Link } from 'react-router-dom'
 // var counter
 function men(props) {
 
+    let menid=9
+    // console.log('TESTINGGGGGGG')
     // counter = [{ id: 1 }]
     // Session.start('cart', {
     //     payload: {
@@ -48,12 +50,14 @@ function men(props) {
     // }
     let itemList = props.items.map(item => {
         let lsitemcount = 0
-        console.log("item id", item.id)
-        console.log("getdata", getitem)
+        // console.log("itemlist",item)
+        // console.log("item id", item.id)
+        // console.log("getdata", getitem)
+        
         if (getitem !== null) {
             let localStorageItem = getitem.find(lsitem => lsitem.id === item.id)
 
-            console.log("Item present in LS", localStorageItem, "This is Mr. ID", item.id)
+            // console.log("Item present in LS", localStorageItem, "This is Mr. ID", item.id)
             if (localStorageItem) {
                 lsitemcount = localStorageItem.value
             }
@@ -74,10 +78,13 @@ function men(props) {
         //     }
         // }
         // console.log("babababa", item.id)
-        return (
-            <Table>
+        if(item.id<menid){
+
+            return (
+                <Table>
                 <tbody>
                     <tr>
+                    
                         <td>{item.title}</td>
                         <td> Rs. {item.price}</td>
 
@@ -92,18 +99,20 @@ function men(props) {
             //     {/* <div className="card-image"> */}
             //     {/* <img src={item.img} alt={item.title} /> */}
             //     <span className="card-title">{item.title}</span>
-
+            
             //     {/* <span to="/" className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></span> */}
             //     {/* </div > */}
-
+            
             //     {/* <div className="card-content"> */}
             //     {/* <p>{item.desc}</p> */}
             //     <p><b>Price: Rs.{item.price}</b></p>
             //     <Button onClick={handleClick(item.id)}>Add</Button>
             //     {/* </div> */}
             // </div >
+            )
+        }
+        }
         )
-    })
 
     return (
         <>

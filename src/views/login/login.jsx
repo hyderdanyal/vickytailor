@@ -5,21 +5,24 @@ import Footer from "../../components/footer";
 // import image from "../../img/login.jpg";
 // import Firebase from "../../firebase";
 import { withRouter, Redirect } from "react-router-dom";
-// import { Session } from 'bc-react-session';
+import { Session } from 'bc-react-session';
 // import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 // import firebase from "firebase"
 import Collapse from "../../components/collapsingmenu"
 import "../../Styles/login.css"
 
 
-// const session = Session.get();
-
+const session = Session.get();
+var userId
 const RegisterPage = (props) => {
-  // if (session.isValid === true) {
+  if (session.isValid === true) {
 
-  //   return <Redirect to="/dashboard" />
-  // }
-  // else {
+    // console.log("props userid", props.userid)
+    return <Redirect to="/" />
+
+  }
+  else {
+    // console.log("props userid", props.userid)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [otpState, setOTPState] = useState(false)
@@ -29,41 +32,7 @@ const RegisterPage = (props) => {
   const [changepass, setChangepass] = useState("")
 
 
-  //   const uiConfig = {
-  //     signInFlow: "popup",
-  //     signInOptions: [
-  //       {
-  //         provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  //         scopes: [
-  //           'email'
-  //         ]
-  //       },
-  //       {
-  //         provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  //         scopes: [
-
-  //           'email'
-  //         ]
-  //       }],
-  //     callbacks: {
-  //       signInSuccessWithAuthResult: function (result) {
-
-
-  //         Session.start({
-  //           payload: {
-
-  //           },
-  //           expiration: 86400000,
-
-  //         })
-
-
-  //         window.location.assign('/dashboard')
-  //         return false
-  //       }
-  //     }
-  //   }
-
+  
 
 
   return (
@@ -155,12 +124,12 @@ const RegisterPage = (props) => {
   //   })
   // }
   function submitpass() {
-    console.log(email)
+    // console.log(email)
     try {
       if (changepass.length < 6) {
         alert("Password too short")
       } else {
-        console.log('TESTPASS', changepass, email)
+        // console.log('TESTPASS', changepass, email)
         fetch(`http://127.0.0.1:5000/changepass?password=${changepass}&email=${email}`)
           .then(res => res.json())
           .then(data => (data))
@@ -177,13 +146,13 @@ const RegisterPage = (props) => {
         .then(res => res.json())
         .then(data => {
           if (data === true) {
-            console.log(data)
+            // console.log(data)
 
             setChangepassState(true)
           }
 
           else {
-            console.log(data)
+            // console.log(data)
 
             alert('Incorrect OTP')
           }
@@ -221,10 +190,42 @@ const RegisterPage = (props) => {
     }
     else {
       try {
-
+        
         await fetch(`http://127.0.0.1:5000/login?email=${email}&password=${password}`)
           .then(res => res.json())
-          .then(data => alert(data))
+          .then(data => {
+            console.log(data[1])
+            userId=data[1]
+
+            if(data.includes("Login Success")){
+              // alert(data)
+              Session.start({
+                payload: {
+                  
+                },
+                
+              });
+              if (window.confirm("Do you want to update cart from local storage?")){
+                const getitem = JSON.parse(localStorage.getItem("data"))
+                // console.log("update cart",getitem)
+                // localStorage.setItem("logindata", JSON.stringify(getitem))
+                var cartItems=JSON.stringify(getitem)
+                fetch(`http://127.0.0.1:5000/confirmcart?getitem=${cartItems}}`)
+                .then(res => res.json())
+                
+              }
+              
+              
+              else{
+                console.log("Dont update cart")
+              }
+              window.location.href = "/men"
+            }else {
+              alert(data)
+            }
+            // console.log("session",session.isValid)
+          })
+          
 
       } catch (err) {
         console.log(err)
@@ -250,6 +251,7 @@ const RegisterPage = (props) => {
   //   }
   //   }
   // }
+}
 }
 export default withRouter(RegisterPage);
 
